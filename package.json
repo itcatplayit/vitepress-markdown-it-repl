@@ -1,0 +1,86 @@
+{
+  "name": "vitepress-markdown-it-repl",
+  "version": "0.0.1",
+  "description": "repl display for markdown-it plugin in vitepress project.",
+  "keywords": [
+    "markdown-it",
+    "markdown-it-plugin",
+    "vue",
+    "vitepress",
+    "repl"
+  ],
+  "homepage": "https://github.com/itcatplayit/vitepress-markdown-it-repl",
+  "bugs": {
+    "url": "https://github.com/itcatplayit/vitepress-markdown-it-repl/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itcatplayit/vitepress-markdown-it-repl.git"
+  },
+  "license": "MIT",
+  "author": "itcatplayit <itcatplayit@163.com>",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "test": "vitest",
+    "clean": "rimraf dist",
+    "dev": "vitest",
+    "lint": "eslint --ext .cjs,.ts . --fix",
+    "prepare": "husky install",
+    "release": "pnpm clean && pnpm build && pnpm lint && pnpm test"
+  },
+  "dependencies": {
+    "@types/markdown-it": "^12.2.3",
+    "markdown-it": "^13.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "lint-staged": {
+    "*.{cjs,ts}": "eslint --fix",
+    "*.{json,md,yml}": "prettier --write",
+    "package.json": "sort-package-json"
+  },
+  "prettier": "@meteorlxy/prettier-config",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@meteorlxy/eslint-config-prettier": "^2.24.0",
+    "@meteorlxy/eslint-config-prettier-typescript": "^2.24.0",
+    "@meteorlxy/prettier-config": "^2.11.0",
+    "@meteorlxy/tsconfig": "^2.23.1",
+    "@vitest/coverage-istanbul": "^0.31.0",
+    "eslint": "^8.40.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
+    "sort-package-json": "^2.4.1",
+    "typescript": "^5.0.4",
+    "unbuild": "^1.2.1",
+    "vitest": "^0.31.0"
+  },
+  "packageManager": "pnpm@8.5.0",
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@types/node",
+        "eslint-plugin-import",
+        "typescript"
+      ]
+    }
+  }
+}
