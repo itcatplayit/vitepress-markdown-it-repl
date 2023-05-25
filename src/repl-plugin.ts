@@ -3,7 +3,7 @@ import type MarkdownIt from 'markdown-it';
 // set globalEnabledLineNumbers to equal with vitepress project's `markdown.lineNumbers`
 const replPlugin: MarkdownIt.PluginSimple = (
   md,
-  configs = { globalEnabledLineNumbers: false },
+  configs = { globalEnabledLineNumbers: false, symbol: '$' },
 ): void => {
   const fence = md.renderer.rules.fence!;
   md.renderer.rules.fence = (...args) => {
@@ -42,7 +42,7 @@ const replPlugin: MarkdownIt.PluginSimple = (
     const lineNumbersCode = [...Array(lines.length)]
       .map(
         (_, index) =>
-          `<span class="replin">${nums.has(index + 1) ? '$' : ''}</span><br>`,
+          `<span class="replin">${nums.has(index + 1) ? configs.symbol : ''}</span><br>`,
       )
       .join('');
     // line-numbers-wrapper class is to avoid add more css

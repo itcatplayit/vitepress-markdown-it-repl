@@ -37,3 +37,10 @@ then, in your markdown file, you can use as this:
 it will display repl symbol:
 
 ![](./assets/display.png)
+
+## default Options
+
+| option                   | default value |
+| -----                    | ------        |
+| globalEnabledLineNumbers | false         |
+| symbol                   | '$'           |
