@@ -1,6 +1,6 @@
 # itcatplayit/vitepress-markdown-it-repl
 
-[![npm](https://badgen.net/npm/v/itcatplayit/vitepress-markdown-it-repl)](https://www.npmjs.com/package/itcatplayit/vitepress-markdown-it-repl)
+[![npm](https://badgen.net/npm/v/vitepress-markdown-it-repl)](https://www.npmjs.com/package/vitepress-markdown-it-repl)
 [![license](https://badgen.net/github/license/itcatplayit/vitepress-markdown-it-repl)](https://github.com/itcatplayit/vitepress-markdown-it-repl/blob/main/LICENSE)
 
 repl display for [markdown-it](https://github.com/itcatplayit/vitepress-markdown-it-repl) plugin in vitepress project.
