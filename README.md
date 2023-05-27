@@ -44,3 +44,5 @@ it will display repl symbol:
 | -----                    | ------        |
 | globalEnabledLineNumbers | false         |
 | symbol                   | '$'           |
+| leftDelimiter            | '$('          |
+| rightDelimiter           | ')'           |

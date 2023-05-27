@@ -1,11 +1,21 @@
 import type MarkdownIt from 'markdown-it';
 
+const defaultConfigs = {
+  globalEnabledLineNumbers: false,
+  symbol: '$',
+  leftDelimiter: '$(',
+  rightDelimiter: ')',
+};
+
 // set globalEnabledLineNumbers to equal with vitepress project's `markdown.lineNumbers`
 const replPlugin: MarkdownIt.PluginSimple = (
   md,
-  configs = { globalEnabledLineNumbers: false, symbol: '$' },
+  configs = defaultConfigs,
 ): void => {
   const fence = md.renderer.rules.fence!;
+
+  const iConfigs = { ...defaultConfigs, ...configs };
+
   md.renderer.rules.fence = (...args) => {
     const rawCode = fence(...args);
 
@@ -13,10 +23,16 @@ const replPlugin: MarkdownIt.PluginSimple = (
     const info = tokens[idx].info;
 
     const isLineNumberActive =
-      (configs.globalEnabledLineNumbers && !/:no-line-numbers/.test(info)) ||
-      (!configs.globalEnabledLineNumbers && /:line-numbers/.test(info));
+      (iConfigs.globalEnabledLineNumbers && !/:no-line-numbers/.test(info)) ||
+      (!iConfigs.globalEnabledLineNumbers && /:line-numbers/.test(info));
 
-    const tar = info.match(/\$\(([\d-,]+)\)/);
+    const sreg =
+      '\\' +
+      iConfigs.leftDelimiter.split('').join('\\') +
+      '([\\d-,]+)\\' +
+      iConfigs.rightDelimiter.split('').join('\\');
+    const reg = new RegExp(sreg);
+    const tar = info.match(reg);
     const nums = new Set();
     if (tar && tar[1]) {
       tar[1].split(',').forEach((n) => {
@@ -42,7 +58,9 @@ const replPlugin: MarkdownIt.PluginSimple = (
     const lineNumbersCode = [...Array(lines.length)]
       .map(
         (_, index) =>
-          `<span class="replin">${nums.has(index + 1) ? configs.symbol : ''}</span><br>`,
+          `<span class="replin">${
+            nums.has(index + 1) ? iConfigs.symbol : ''
+          }</span><br>`,
       )
       .join('');
     // line-numbers-wrapper class is to avoid add more css
