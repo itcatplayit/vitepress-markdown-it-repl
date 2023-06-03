@@ -24,7 +24,7 @@ export default defineConfig({
   markdown: {
     lineNumbers: true, // or false
     // set globalEnabledLineNumbers's value same as lineNumbers above.
-    config: md => replPlugin(md, { globalEnabledLineNumbers: true })
+    config: md => md.use(replPlugin, { globalEnabledLineNumbers: true })
   },
   // ...
 })
