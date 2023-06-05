@@ -21,6 +21,7 @@ const replPlugin: MarkdownIt.PluginSimple = (
 
     const [tokens, idx] = args;
     const info = tokens[idx].info;
+    let symbol = iConfigs.symbol;
 
     const isLineNumberActive =
       (iConfigs.globalEnabledLineNumbers && !/:no-line-numbers/.test(info)) ||
@@ -29,7 +30,7 @@ const replPlugin: MarkdownIt.PluginSimple = (
     const sreg =
       '\\' +
       iConfigs.leftDelimiter.split('').join('\\') +
-      '([\\d-,]+)\\' +
+      '([\\d-,]+)([^\s]{0,2})\\' +
       iConfigs.rightDelimiter.split('').join('\\');
     const reg = new RegExp(sreg);
     const tar = info.match(reg);
@@ -47,6 +48,9 @@ const replPlugin: MarkdownIt.PluginSimple = (
           nums.add(+n);
         }
       });
+      if (tar[2]) {
+        symbol = tar[2];
+      }
     }
 
     const code = rawCode.slice(
@@ -59,7 +63,7 @@ const replPlugin: MarkdownIt.PluginSimple = (
       .map(
         (_, index) =>
           `<span class="replin">${
-            nums.has(index + 1) ? iConfigs.symbol : ''
+            nums.has(index + 1) ? symbol : ''
           }</span><br>`,
       )
       .join('');

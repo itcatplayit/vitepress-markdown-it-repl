@@ -1,6 +1,6 @@
 {
   "name": "vitepress-markdown-it-repl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "repl display for markdown-it plugin in vitepress project.",
   "keywords": [
     "markdown-it",

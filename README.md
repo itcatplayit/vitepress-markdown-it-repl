@@ -46,3 +46,11 @@ it will display repl symbol:
 | symbol                   | '$'           |
 | leftDelimiter            | '$('          |
 | rightDelimiter           | ')'           |
+
+## unusual code block
+
+when you set a global symbol like '$', but some unusual code block, you want a symbol like '#', how?
+
+    ```bash $(1#)
+    echo a b
+    ```
